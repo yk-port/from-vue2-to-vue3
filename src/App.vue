@@ -1,14 +1,21 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 in CodeSandbox!" />
+  <div>
+    <BaseInput v-model:modelValue="myInput" />
+    <pre>{{ $data }}</pre>
+  </div>
 </template>
 
 <script>
-import HelloWorldVue from "./components/HelloWorld.vue";
+import BaseInput from "./components/BaseInput.vue";
 export default {
   name: "App",
   components: {
-    HelloWorld: HelloWorldVue,
+    BaseInput,
+  },
+  data() {
+    return {
+      myInput: "",
+    };
   },
 };
 </script>
