@@ -1,20 +1,34 @@
 <template>
   <div>
-    <BaseInput v-model:modelValue="myInput" />
-    <pre>{{ $data }}</pre>
+    <SalutationName
+      v-model:salutation="form.salutation"
+      v-model:name="form.name"
+    />
+    <pre>{{ form }}</pre>
   </div>
 </template>
 
 <script>
-import BaseInput from "./components/BaseInput.vue";
+// // CompositionAPIの機能,ネストするdataプロパティを作る時に使う
+import { reactive } from "vue";
+import SalutationName from "./components/SalutationName.vue";
+
 export default {
   name: "App",
+
   components: {
-    BaseInput,
+    SalutationName,
   },
-  data() {
+
+  setup() {
+    // dataプロパティに該当する箇所,formの中にsalutationとnameプロパティがある
+    const form = reactive({
+      salutation: "",
+      name: "",
+    });
+
     return {
-      myInput: "",
+      form,
     };
   },
 };
