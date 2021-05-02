@@ -1,5 +1,13 @@
 <template>
   <div>
+    <BaseInput
+      v-model="email"
+      @blur="email = 'blurrr@its.cold'"
+      label="Email:"
+      type="email"
+    />
+    <pre>{{ email }}</pre>
+
     <!-- 修飾子やfiltersを使った処理をしたい時は、v-modelの引数に.をつけて -->
     <SalutationName
       v-model:salutation.capitalize="form.salutation"
@@ -10,8 +18,10 @@
 </template>
 
 <script>
-// // CompositionAPIの機能,ネストするdataプロパティを作る時に使う
-import { reactive } from "vue";
+// // CompositionAPIの機能,ネストするdataプロパティを作る時にreactiveを使う
+// // CompositionAPIの機能,dataプロパティにアクセスする時にrefを使う
+import { reactive, ref } from "vue";
+import BaseInput from "./components/BaseInput.vue";
 import SalutationName from "./components/SalutationName.vue";
 
 export default {
@@ -19,6 +29,7 @@ export default {
 
   components: {
     SalutationName,
+    BaseInput,
   },
 
   setup() {
@@ -28,8 +39,11 @@ export default {
       name: "",
     });
 
+    const email = ref("");
+
     return {
       form,
+      email,
     };
   },
 };
