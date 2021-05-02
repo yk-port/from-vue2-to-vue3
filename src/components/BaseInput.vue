@@ -1,10 +1,13 @@
 <template>
   <label>{{ label }}</label>
   <!-- 親コンポーネントから渡ってくる内容は全てv-bind="$attrs"に内包される -->
+  <!-- @inputの内容も、スプレッド演算子を使ってv-bindにまとめることができる -->
   <input
-    v-bind="$attrs"
+    v-bind="{
+      ...$attrs,
+      onInput: (event) => $emit('update:modelValue', event.target.value),
+    }"
     :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value)"
   />
 </template>
 
