@@ -1,8 +1,9 @@
 <template>
   <div>
+    <!-- 修飾子やfiltersを使った処理をしたい時は、v-modelの引数に.をつけて -->
     <SalutationName
-      v-model:salutation="form.salutation"
-      v-model:name="form.name"
+      v-model:salutation.capitalize="form.salutation"
+      v-model:name.capitalize="form.name"
     />
     <pre>{{ form }}</pre>
   </div>
